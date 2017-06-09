@@ -8,7 +8,15 @@ var upload = multer({
 });
 
 // 单图上传
+//multer有single()中的名称必须是表单上传字段的name名称。
 app.post('/upload', upload.single('logo'), function(req, res, next) {
+    
+    var file = req.file;
+    console.log('文件类型：%s', file.mimetype);
+    console.log('原始文件名：%s', file.originalname);
+    console.log('文件大小：%s', file.size);
+    console.log('文件保存路径：%s', file.path);
+
     res.send({
         ret_code: '0'
     });
